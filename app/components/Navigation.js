@@ -153,11 +153,10 @@ export default function Navigation() {
                             }}
                           />
                         )}
-                      </Link>
+                      </Link>{" "}
                     </motion.li>
                   ))}
                 </ul>
-                \
               </motion.div>
             </>
           )}

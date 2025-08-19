@@ -8,22 +8,28 @@ export default function ScrollToTop() {
 
   useEffect(() => {
     const toggleVisibility = () => {
-      if (window.pageYOffset > 300) {
+      // Check if window is available (client-side only)
+      if (typeof window !== "undefined" && window.pageYOffset > 300) {
         setIsVisible(true);
       } else {
         setIsVisible(false);
       }
     };
 
-    window.addEventListener("scroll", toggleVisibility);
-    return () => window.removeEventListener("scroll", toggleVisibility);
+    // Only add event listener on client side
+    if (typeof window !== "undefined") {
+      window.addEventListener("scroll", toggleVisibility);
+      return () => window.removeEventListener("scroll", toggleVisibility);
+    }
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    if (typeof window !== "undefined") {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
   };
 
   return (

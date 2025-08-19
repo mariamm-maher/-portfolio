@@ -3,9 +3,15 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Github, Linkedin, Mail, Globe } from "lucide-react";
+import { useState, useEffect } from "react";
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear();
+  const [currentYear, setCurrentYear] = useState(2024); // Default fallback
+
+  // Set the current year on client side only
+  useEffect(() => {
+    setCurrentYear(new Date().getFullYear());
+  }, []);
 
   const socialLinks = [
     {

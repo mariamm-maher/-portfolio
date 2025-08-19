@@ -12,6 +12,8 @@ import {
   ExternalLink,
   Github,
   Coffee,
+  Play,
+  Code2,
 } from "lucide-react";
 
 export default function ProjectCard({ project, index }) {
@@ -80,11 +82,9 @@ export default function ProjectCard({ project, index }) {
               <IconComponent className="w-6 h-6 text-cyan-400" />
             </motion.div>
           </div>
-
           <p className="text-gray-300 mb-6 leading-relaxed">
             {project.description}
           </p>
-
           {/* Tech Stack */}
           <div className="mb-6">
             {" "}
@@ -106,7 +106,6 @@ export default function ProjectCard({ project, index }) {
               ))}
             </div>
           </div>
-
           {/* Features */}
           <div className="mb-6">
             {" "}
@@ -129,7 +128,6 @@ export default function ProjectCard({ project, index }) {
               ))}
             </ul>
           </div>
-
           {/* Developer Comments */}
           {project.developerComment && (
             <div className="mb-6 p-3 bg-gray-900/30 rounded-lg border-l-4 border-cyan-400/50">
@@ -137,10 +135,23 @@ export default function ProjectCard({ project, index }) {
                 // {project.developerComment}
               </p>
             </div>
-          )}
-
+          )}{" "}
           {/* Action Buttons */}
-          <div className="flex gap-4">
+          <div className="flex gap-3">
+            {project.videoDemo && (
+              <motion.a
+                href={project.videoDemo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 bg-gradient-to-r from-red-500 to-pink-600 text-white py-3 px-6 rounded-lg font-semibold text-center hover:from-red-400 hover:to-pink-500 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-red-500/25 flex items-center justify-center gap-2"
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Play className="w-4 h-4" />
+                Video Demo
+              </motion.a>
+            )}
+
             {project.liveUrl && (
               <motion.a
                 href={project.liveUrl}
@@ -169,12 +180,37 @@ export default function ProjectCard({ project, index }) {
               </motion.a>
             )}
           </div>
-
+          {/* Technical Highlights Section */}
+          {project.technicalHighlights && (
+            <div className="mt-6 p-4 bg-gray-900/40 rounded-lg border border-gray-700/30">
+              <h4 className="text-sm font-semibold text-green-400 mb-3 flex items-center">
+                <Code2 className="w-4 h-4 mr-2" />
+                Technical Implementation
+              </h4>
+              <div className="space-y-2">
+                {project.technicalHighlights.map((highlight, idx) => (
+                  <motion.p
+                    key={idx}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.2 + idx * 0.1 }}
+                    className="text-gray-300 text-sm leading-relaxed"
+                  >
+                    <span className="text-green-400">•</span> {highlight}
+                  </motion.p>
+                ))}
+              </div>
+            </div>
+          )}{" "}
           {/* Easter Egg */}
           {project.easterEgg && (
             <motion.div
               className="absolute bottom-2 right-2 cursor-pointer"
-              onClick={() => setShowEasterEgg(!showEasterEgg)}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setShowEasterEgg(!showEasterEgg);
+              }}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
