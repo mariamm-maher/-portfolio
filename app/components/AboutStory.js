@@ -35,7 +35,6 @@ export default function AboutStory() {
       className="bg-gray-800/30 backdrop-blur-md rounded-2xl p-8 mb-12 border border-gray-700/50 relative overflow-hidden"
     >
       <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-cyan-400/10 to-transparent rounded-full" />
-
       <div className="space-y-6">
         {storyPoints.map((point, index) => {
           const IconComponent = point.icon;
@@ -58,15 +57,14 @@ export default function AboutStory() {
             </motion.div>
           );
         })}
-      </div>
-
+      </div>{" "}
       {/* Developer Easter Egg */}
       <motion.div
         className="absolute bottom-4 right-4 text-xs font-mono text-cyan-400/50"
         animate={{ opacity: [0.3, 0.7, 0.3] }}
         transition={{ duration: 2, repeat: Infinity }}
       >
-        // TODO: Take over the world
+        {/* TODO: Take over the world */}
       </motion.div>
     </motion.div>
   );

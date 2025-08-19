@@ -131,8 +131,9 @@ export default function ProjectCard({ project, index }) {
           {/* Developer Comments */}
           {project.developerComment && (
             <div className="mb-6 p-3 bg-gray-900/30 rounded-lg border-l-4 border-cyan-400/50">
+              {" "}
               <p className="text-xs font-mono text-cyan-400/80 italic">
-                // {project.developerComment}
+                {/* {project.developerComment} */}
               </p>
             </div>
           )}{" "}

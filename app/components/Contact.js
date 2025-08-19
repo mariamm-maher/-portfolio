@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useMemo } from "react";
 import {
   Mail,
   MapPin,
@@ -26,7 +26,6 @@ export default function Contact() {
       },
     },
   };
-
   const cardVariants = {
     hidden: { y: 50, opacity: 0, scale: 0.9 },
     visible: {
@@ -37,12 +36,15 @@ export default function Contact() {
     },
   };
 
-  const floatingElements = [
-    "console.log('Let\\\\'s connect!');",
-    "const collaboration = await new Promise();",
-    "// Ready to build something amazing?",
-    "git clone <your-amazing-idea>",
-  ];
+  const floatingElements = useMemo(
+    () => [
+      "console.log('Let\\\\'s connect!');",
+      "const collaboration = await new Promise();",
+      "// Ready to build something amazing?",
+      "git clone <your-amazing-idea>",
+    ],
+    []
+  );
 
   const contactInfo = [
     {
@@ -90,7 +92,6 @@ export default function Contact() {
       description: "Professional network",
     },
   ];
-
   useEffect(() => {
     if (typeof window !== "undefined") {
       setFloatingPositions(
@@ -101,7 +102,7 @@ export default function Contact() {
         }))
       );
     }
-  }, []);
+  }, [floatingElements]);
 
   return (
     <main className="container mx-auto px-8 py-16 relative overflow-hidden">
@@ -152,13 +153,13 @@ export default function Contact() {
             initial={{ scaleX: 0 }}
             animate={isInView ? { scaleX: 1 } : {}}
             transition={{ duration: 1, delay: 0.5 }}
-          />
+          />{" "}
           <motion.p
             className="text-gray-400 mt-6 text-lg"
             animate={{ opacity: [0.7, 1, 0.7] }}
             transition={{ duration: 3, repeat: Infinity }}
           >
-            I'm always open to discussing new opportunities and interesting
+            I&apos;m always open to discussing new opportunities and interesting
             projects
           </motion.p>
           <motion.p
@@ -166,7 +167,7 @@ export default function Contact() {
             animate={{ opacity: [0.5, 1, 0.5] }}
             transition={{ duration: 4, repeat: Infinity }}
           >
-            // Let's build something amazing together!
+            {/* Let&apos;s build something amazing together! */}
           </motion.p>
         </motion.div>
 
@@ -224,11 +225,9 @@ export default function Contact() {
                   >
                     <IconComponent className={`w-6 h-6 ${colors.text}`} />
                   </motion.div>
-
                   <h4 className="text-white font-semibold mb-2">
                     {info.title}
                   </h4>
-
                   {info.href ? (
                     <motion.a
                       href={info.href}
@@ -244,14 +243,13 @@ export default function Contact() {
                     >
                       {info.value}
                     </motion.p>
-                  )}
-
+                  )}{" "}
                   <motion.p
                     className={`text-xs ${colors.text}/60 font-mono opacity-0 group-hover:opacity-100 transition-opacity`}
                     initial={{ y: 5 }}
                     animate={{ y: 0 }}
                   >
-                    // {info.subtitle}
+                    {/* {info.subtitle} */}
                   </motion.p>
                 </div>
               </motion.div>
@@ -265,15 +263,14 @@ export default function Contact() {
             whileHover={{ scale: 1.05 }}
           >
             Connect With Me
-          </motion.h4>
+          </motion.h4>{" "}
           <motion.p
             className="text-gray-400 font-mono text-sm mb-8"
             animate={{ opacity: [0.6, 1, 0.6] }}
             transition={{ duration: 3, repeat: Infinity }}
           >
-            // Find me on these platforms
+            {/* Find me on these platforms */}
           </motion.p>
-
           <motion.div
             className="flex justify-center space-x-6 mb-12"
             variants={containerVariants}
@@ -312,9 +309,10 @@ export default function Contact() {
                     initial={{ y: 10, opacity: 0 }}
                     whileHover={{ y: 0, opacity: 1 }}
                   >
+                    {" "}
                     <div className="font-semibold">{social.name}</div>
                     <div className="text-gray-400 font-mono text-xs">
-                      // {social.description}
+                      {/* {social.description} */}
                     </div>
                     <div className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-gray-900"></div>
                   </motion.div>
@@ -322,7 +320,6 @@ export default function Contact() {
               );
             })}
           </motion.div>
-
           <motion.div
             className="flex flex-col md:flex-row justify-center items-center gap-6 text-sm font-mono text-gray-400"
             initial={{ opacity: 0 }}

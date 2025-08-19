@@ -135,13 +135,13 @@ export default function Footer() {
             <p className="text-gray-500 text-sm">
               © {currentYear} Mariam Maher. Built with passion using Next.js &
               Tailwind CSS
-            </p>
+            </p>{" "}
             <div className="text-gray-500 text-xs font-mono">
               <motion.span
                 animate={{ opacity: [0.5, 1, 0.5] }}
                 transition={{ duration: 2, repeat: Infinity }}
               >
-                // Always coding, always learning
+                {/* Always coding, always learning */}
               </motion.span>
             </div>
           </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useMemo } from "react";
 import {
   Code2,
   Database,
@@ -122,17 +122,20 @@ export default function Skills() {
       transition: { duration: 0.6, ease: "easeOut" },
     },
   };
-
   const skillVariants = {
     hidden: { x: -20, opacity: 0 },
     visible: { x: 0, opacity: 1 },
   };
-  const floatingElements = [
-    { text: "console.log('Skills loading...');", delay: 0 },
-    { text: "npm install awesome-skills", delay: 2 },
-    { text: "git commit -m 'Added new skill'", delay: 4 },
-    { text: "/* TODO: Learn everything */", delay: 6 },
-  ];
+
+  const floatingElements = useMemo(
+    () => [
+      { text: "console.log('Skills loading...');", delay: 0 },
+      { text: "npm install awesome-skills", delay: 2 },
+      { text: "git commit -m 'Added new skill'", delay: 4 },
+      { text: "/* TODO: Learn everything */", delay: 6 },
+    ],
+    []
+  );
 
   useEffect(() => {
     // Generate random positions only on client side to avoid hydration mismatch
@@ -145,7 +148,7 @@ export default function Skills() {
         }))
       );
     }
-  }, []);
+  }, [floatingElements]);
 
   return (
     <main className="container mx-auto px-8 py-16 relative overflow-hidden">
@@ -208,7 +211,8 @@ export default function Skills() {
           >
             Professional expertise across modern web development technologies
           </motion.p>
-        </motion.div>{" "}        {/* Main Skills Categories */}
+        </motion.div>{" "}
+        {/* Main Skills Categories */}
         <motion.div
           className="grid md:grid-cols-2 gap-12 mb-16"
           variants={containerVariants}
@@ -256,7 +260,9 @@ export default function Skills() {
                         whileHover={{ x: 3 }}
                       >
                         <div className={`p-2 rounded-lg ${colorClasses.bg}`}>
-                          <SkillIcon className={`w-5 h-5 ${colorClasses.primary}`} />
+                          <SkillIcon
+                            className={`w-5 h-5 ${colorClasses.primary}`}
+                          />
                         </div>
                         <div className="flex-1">
                           <span className="text-gray-200 font-medium text-base">
@@ -270,7 +276,8 @@ export default function Skills() {
               </motion.div>
             );
           })}
-        </motion.div>{" "}        {/* Additional Technologies */}
+        </motion.div>{" "}
+        {/* Additional Technologies */}
         <motion.div
           className="bg-gray-900/50 backdrop-blur-sm rounded-xl p-10 border border-gray-700/50"
           variants={cardVariants}

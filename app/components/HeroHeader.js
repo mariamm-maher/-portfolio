@@ -52,7 +52,8 @@ export default function HeroHeader() {
         }}
         transition={{ type: "spring", stiffness: 300 }}
       >
-        I'm Mariam Maher.
+        {" "}
+        I&apos;m Mariam Maher.
       </motion.h1>{" "}
       <motion.p className="text-xl text-gray-500 mb-6" variants={itemVariants}>
         Crafting digital experiences with code
@@ -63,7 +64,7 @@ export default function HeroHeader() {
         variants={floatingVariants}
         animate="animate"
       >
-        const coffee = "required";
+        const coffee = &quot;required&quot;;
       </motion.div>
       <motion.div
         className="absolute top-20 -right-32 text-gray-600/40 font-mono text-sm opacity-40"
@@ -87,7 +88,7 @@ export default function HeroHeader() {
         animate="animate"
         transition={{ delay: 0.5 }}
       >
-        console.log("Hello World!");
+        console.log(&quot;Hello World!&quot;);
       </motion.div>
       <motion.div
         className="absolute top-40 left-8 text-gray-700/35 font-mono text-xs opacity-25"

@@ -2,13 +2,16 @@
 
 import { motion } from "framer-motion";
 
-export default function HeroContent() {  return (
+export default function HeroContent() {
+  return (
     <motion.div
       className="flex-1 text-white w-full max-w-2xl px-4 sm:px-0"
       initial={{ opacity: 0, x: 50 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.8, delay: 1 }}
-    >      <motion.h2
+    >
+      {" "}
+      <motion.h2
         className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-gray-100 via-gray-200 to-gray-300 bg-clip-text text-transparent mb-6 sm:mb-8 leading-tight"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
@@ -29,7 +32,8 @@ export default function HeroContent() {  return (
           &
         </motion.span>
         <span className="inline sm:block">Software Engineer</span>
-      </motion.h2>      <motion.div
+      </motion.h2>{" "}
+      <motion.div
         className="space-y-4 sm:space-y-6 text-base sm:text-lg md:text-xl text-gray-400 leading-relaxed"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -50,9 +54,9 @@ export default function HeroContent() {  return (
           >
             {" "}
             MongoDB, Express.js, React, and Node.js
-          </motion.span>
-          . I'm passionate about creating scalable web applications and bringing
-          ideas to life through clean, efficient code.
+          </motion.span>{" "}
+          . I&apos;m passionate about creating scalable web applications and
+          bringing ideas to life through clean, efficient code.
         </motion.p>
       </motion.div>
     </motion.div>
