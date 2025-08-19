@@ -8,7 +8,7 @@ export default function AboutHeader() {
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
-      className="text-center mb-16"
+      className="text-center mb-16 mt-16"
     >
       <motion.h1
         className="text-5xl md:text-7xl font-black mb-6"
@@ -41,9 +41,8 @@ export default function AboutHeader() {
         transition={{ delay: 0.8 }}
         className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
       >
-        I'm a passionate full-stack developer who believes that code is poetry
-        in motion. With a love for clean architecture and beautiful user
-        experiences, I transform ideas into digital reality.
+        I'm a Software Engineering student at the Faculty of Computer Science,
+        Helwan University.
       </motion.p>
 
       {/* Floating Code Snippet */}

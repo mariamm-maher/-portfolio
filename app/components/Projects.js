@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import ProjectsHeader from "./ProjectsHeader";
 import ProjectCard from "./ProjectCard";
-import ProjectsFooter from "./ProjectsFooter";
 import { projectsData } from "./projectsData";
 
 export default function Projects() {
@@ -60,8 +59,6 @@ export default function Projects() {
             <ProjectCard key={project.id} project={project} index={index} />
           ))}
         </motion.div>
-
-        <ProjectsFooter />
       </div>
     </div>
   );

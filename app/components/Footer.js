@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { Github, Linkedin, Mail, Globe } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -9,26 +10,26 @@ export default function Footer() {
   const socialLinks = [
     {
       name: "GitHub",
-      url: "https://github.com/mariammaher",
-      icon: "🐙",
+      url: "https://github.com/mariamm-maher",
+      icon: Github,
       color: "text-gray-400 hover:text-white",
     },
     {
       name: "LinkedIn",
-      url: "https://linkedin.com/in/mariammaher",
-      icon: "💼",
+      url: "https://www.linkedin.com/in/mariam-maher-a75135343/",
+      icon: Linkedin,
       color: "text-blue-400 hover:text-blue-300",
     },
     {
       name: "Email",
-      url: "mailto:mariam@example.com",
-      icon: "📧",
+      url: "mailto:mahermariam367@gmail.com",
+      icon: Mail,
       color: "text-cyan-400 hover:text-cyan-300",
     },
     {
       name: "Portfolio",
       url: "#",
-      icon: "🌐",
+      icon: Globe,
       color: "text-purple-400 hover:text-purple-300",
     },
   ];
@@ -94,21 +95,24 @@ export default function Footer() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <h3 className="text-white font-semibold mb-4">Connect</h3>
+            <h3 className="text-white font-semibold mb-4">Connect</h3>{" "}
             <div className="flex justify-center md:justify-end space-x-4">
-              {socialLinks.map((social, index) => (
-                <motion.a
-                  key={social.name}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`${social.color} transition-all duration-300 text-xl hover:scale-110`}
-                  whileHover={{ y: -2 }}
-                  title={social.name}
-                >
-                  {social.icon}
-                </motion.a>
-              ))}
+              {socialLinks.map((social, index) => {
+                const IconComponent = social.icon;
+                return (
+                  <motion.a
+                    key={social.name}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`${social.color} transition-all duration-300 hover:scale-110`}
+                    whileHover={{ y: -2 }}
+                    title={social.name}
+                  >
+                    <IconComponent className="w-5 h-5" />
+                  </motion.a>
+                );
+              })}
             </div>
           </motion.div>
         </div>
@@ -121,8 +125,9 @@ export default function Footer() {
           transition={{ duration: 0.6, delay: 0.6 }}
         >
           <div className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
+            {" "}
             <p className="text-gray-500 text-sm">
-              © {currentYear} Mariam Maher. Built with ❤️ using Next.js &
+              © {currentYear} Mariam Maher. Built with passion using Next.js &
               Tailwind CSS
             </p>
             <div className="text-gray-500 text-xs font-mono">

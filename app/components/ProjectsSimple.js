@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Star, ShoppingCart, ClipboardList, Sun } from "lucide-react";
 
 export default function Projects() {
   return (
@@ -46,48 +47,58 @@ export default function Projects() {
             A collection of projects that showcase my journey as a developer.
             Each one tells a story of learning, creativity, and problem-solving.
           </motion.p>
-        </motion.div>
-
+        </motion.div>{" "}
         {/* Simple projects grid */}
         <div className="grid lg:grid-cols-2 gap-8 mb-16">
           {[
             {
               title: "Portfolio Website",
-              emoji: "🌟",
+              icon: Star,
               description: "The website you're currently viewing!",
+              color: "text-yellow-400",
             },
             {
               title: "E-Commerce Platform",
-              emoji: "🛒",
+              icon: ShoppingCart,
               description: "A full-stack shopping solution",
+              color: "text-green-400",
             },
             {
               title: "Task Manager",
-              emoji: "📋",
+              icon: ClipboardList,
               description: "Collaborative task management app",
+              color: "text-blue-400",
             },
             {
               title: "Weather Dashboard",
-              emoji: "🌤️",
+              icon: Sun,
               description: "Beautiful weather forecasting app",
+              color: "text-cyan-400",
             },
-          ].map((project, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.2, duration: 0.6 }}
-              className="bg-gray-800/40 backdrop-blur-md rounded-2xl p-8 border border-gray-700/50 hover:border-cyan-400/50 transition-all duration-500"
-            >
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-2xl font-bold text-white">
-                  {project.title}
-                </h3>
-                <div className="text-4xl">{project.emoji}</div>
-              </div>
-              <p className="text-gray-300">{project.description}</p>
-            </motion.div>
-          ))}
+          ].map((project, index) => {
+            const IconComponent = project.icon;
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.2, duration: 0.6 }}
+                className="bg-gray-800/40 backdrop-blur-md rounded-2xl p-8 border border-gray-700/50 hover:border-cyan-400/50 transition-all duration-500"
+              >
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-2xl font-bold text-white">
+                    {project.title}
+                  </h3>
+                  <div
+                    className={`w-12 h-12 rounded-lg bg-gray-800/50 border border-gray-600/50 flex items-center justify-center ${project.color}`}
+                  >
+                    <IconComponent className="w-6 h-6" />
+                  </div>
+                </div>
+                <p className="text-gray-300">{project.description}</p>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </div>

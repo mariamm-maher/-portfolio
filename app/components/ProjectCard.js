@@ -2,10 +2,30 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
+import {
+  Hospital,
+  MessageCircle,
+  Plane,
+  ShoppingCart,
+  Settings,
+  Sparkles,
+  ExternalLink,
+  Github,
+  Coffee,
+} from "lucide-react";
 
 export default function ProjectCard({ project, index }) {
   const [isHovered, setIsHovered] = useState(false);
   const [showEasterEgg, setShowEasterEgg] = useState(false);
+
+  const iconMap = {
+    Hospital,
+    MessageCircle,
+    Plane,
+    ShoppingCart,
+  };
+
+  const IconComponent = iconMap[project.iconType] || Settings;
 
   return (
     <motion.div
@@ -53,7 +73,12 @@ export default function ProjectCard({ project, index }) {
               />
             </div>
 
-            <div className="text-4xl">{project.emoji}</div>
+            <motion.div
+              className="w-12 h-12 bg-cyan-500/20 rounded-lg flex items-center justify-center"
+              whileHover={{ scale: 1.1, rotate: 5 }}
+            >
+              <IconComponent className="w-6 h-6 text-cyan-400" />
+            </motion.div>
           </div>
 
           <p className="text-gray-300 mb-6 leading-relaxed">
@@ -62,8 +87,9 @@ export default function ProjectCard({ project, index }) {
 
           {/* Tech Stack */}
           <div className="mb-6">
+            {" "}
             <h4 className="text-sm font-semibold text-cyan-400 mb-3 flex items-center">
-              <span className="mr-2">🔧</span>
+              <Settings className="w-4 h-4 mr-2" />
               Tech Stack
             </h4>
             <div className="flex flex-wrap gap-2">
@@ -83,8 +109,9 @@ export default function ProjectCard({ project, index }) {
 
           {/* Features */}
           <div className="mb-6">
+            {" "}
             <h4 className="text-sm font-semibold text-purple-400 mb-3 flex items-center">
-              <span className="mr-2">✨</span>
+              <Sparkles className="w-4 h-4 mr-2" />
               Key Features
             </h4>
             <ul className="space-y-2">
@@ -119,11 +146,12 @@ export default function ProjectCard({ project, index }) {
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 bg-gradient-to-r from-cyan-500 to-blue-600 text-white py-3 px-6 rounded-lg font-semibold text-center hover:from-cyan-400 hover:to-blue-500 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-cyan-500/25"
+                className="flex-1 bg-gradient-to-r from-cyan-500 to-blue-600 text-white py-3 px-6 rounded-lg font-semibold text-center hover:from-cyan-400 hover:to-blue-500 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-cyan-500/25 flex items-center justify-center gap-2"
                 whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
-                🚀 Live Demo
+                <ExternalLink className="w-4 h-4" />
+                Live Demo
               </motion.a>
             )}
 
@@ -132,11 +160,12 @@ export default function ProjectCard({ project, index }) {
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 bg-gray-700 text-white py-3 px-6 rounded-lg font-semibold text-center hover:bg-gray-600 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                className="flex-1 bg-gray-700 text-white py-3 px-6 rounded-lg font-semibold text-center hover:bg-gray-600 transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center gap-2"
                 whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
-                📂 Code
+                <Github className="w-4 h-4" />
+                Code
               </motion.a>
             )}
           </div>
@@ -149,8 +178,9 @@ export default function ProjectCard({ project, index }) {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
+              {" "}
               <span className="text-xs opacity-30 hover:opacity-60 transition-opacity">
-                🥚
+                <Coffee className="w-4 h-4" />
               </span>
               {showEasterEgg && (
                 <motion.div

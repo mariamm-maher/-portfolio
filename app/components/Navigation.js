@@ -4,26 +4,26 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import { Home, User, Rocket, Zap, Mail } from "lucide-react";
 
 export default function Navigation() {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
   const navItems = [
-    { href: "/", label: "Home", icon: "🏠" },
-    { href: "/about", label: "About", icon: "👨‍💻" },
-    { href: "/projects", label: "Projects", icon: "🚀" },
-    { href: "/skills", label: "Skills", icon: "⚡" },
-    { href: "/contact", label: "Contact", icon: "📧" },
+    { href: "/", label: "Home", icon: Home },
+    { href: "/about", label: "About", icon: User },
+    { href: "/projects", label: "Projects", icon: Rocket },
+    { href: "/skills", label: "Skills", icon: Zap },
+    { href: "/contact", label: "Contact", icon: Mail },
   ];
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
   return (
-    <nav className="pt-8 animate-fade-in relative z-50">
+    <nav className="animate-fade-in relative">
       {/* Desktop Navigation */}
-      <div className="hidden md:flex justify-center">
+      <div className="hidden md:flex justify-center w-full">
         <div className="bg-gray-800/40 backdrop-blur-md rounded-full px-8 py-4 border border-gray-700/50 shadow-2xl hover:shadow-cyan-500/20 transition-all duration-500">
           <ul className="flex space-x-8 text-gray-300 font-medium">
             {navItems.map((item, index) => (
@@ -51,7 +51,7 @@ export default function Navigation() {
         </div>
       </div>{" "}
       {/* Mobile Navigation */}
-      <div className="md:hidden flex justify-center px-4">
+      <div className="md:hidden flex justify-end w-full">
         {/* Mobile Menu Button */}
         <motion.button
           onClick={toggleMobileMenu}
@@ -109,7 +109,7 @@ export default function Navigation() {
               />{" "}
               {/* Mobile Menu */}
               <motion.div
-                className="absolute top-20 left-1/2 transform -translate-x-1/2 bg-gray-800/95 backdrop-blur-md rounded-2xl border border-gray-700/50 shadow-2xl min-w-[280px] max-w-[90vw]"
+                className="absolute top-20 right-0 bg-gray-800/95 backdrop-blur-md rounded-2xl border border-gray-700/50 shadow-2xl min-w-[280px] max-w-[90vw]"
                 initial={{ opacity: 0, y: -20, scale: 0.9 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: -20, scale: 0.9 }}
@@ -132,15 +132,15 @@ export default function Navigation() {
                             : ""
                         }`}
                       >
+                        {" "}
                         <motion.span
                           className="text-xl"
                           whileHover={{ scale: 1.2, rotate: 5 }}
                           transition={{ type: "spring", stiffness: 400 }}
                         >
-                          {item.icon}
+                          <item.icon size={20} />
                         </motion.span>
                         <span>{item.label}</span>
-
                         {/* Active indicator */}
                         {pathname === item.href && (
                           <motion.div
@@ -164,7 +164,7 @@ export default function Navigation() {
         </AnimatePresence>
       </div>{" "}
       {/* Tablet Navigation (Optional: Medium screens) */}
-      <div className="hidden sm:flex md:hidden justify-center">
+      <div className="hidden sm:flex md:hidden justify-end w-full">
         <div className="bg-gray-800/40 backdrop-blur-md rounded-full px-6 py-3 border border-gray-700/50 shadow-2xl hover:shadow-cyan-500/20 transition-all duration-500">
           <ul className="flex space-x-6 text-gray-300 font-medium">
             {navItems.map((item, index) => (
@@ -184,7 +184,9 @@ export default function Navigation() {
                   className="hover:text-cyan-400 transition-all duration-300 transform hover:scale-105 relative group block text-sm"
                   title={item.label}
                 >
-                  <span className="text-lg">{item.icon}</span>
+                  <span className="text-lg">
+                    <item.icon size={18} />
+                  </span>
                   <span className="absolute inset-0 bg-cyan-400/10 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300 -z-10"></span>
                 </Link>
               </motion.li>

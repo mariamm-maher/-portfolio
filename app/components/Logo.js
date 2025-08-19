@@ -2,7 +2,7 @@
 
 export default function Logo() {
   return (
-    <div className="absolute top-6 left-8 z-50 animate-fade-in">
+    <div className="animate-fade-in md:absolute md:top-6 md:left-8 md:z-50">
       <div className="group cursor-pointer">
         <div className="relative">
           {/* Logo Text */}

@@ -2,6 +2,20 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
+import {
+  Code2,
+  Database,
+  Wrench,
+  Palette,
+  Server,
+  Settings,
+  Globe,
+  GitBranch,
+  Shield,
+  Zap,
+  Smartphone,
+  Cloud,
+} from "lucide-react";
 
 export default function Skills() {
   const ref = useRef(null);
@@ -11,110 +25,82 @@ export default function Skills() {
   const skillCategories = [
     {
       title: "Frontend Development",
+      icon: Palette,
       color: "cyan",
-      icon: "🎨",
-      funFact: "// Making pixels dance since 2021",
+      description: "Building beautiful, responsive user interfaces",
       skills: [
-        { name: "React", level: 90, comment: "// Hook, line, and sinker" },
-        {
-          name: "Next.js",
-          level: 85,
-          comment: "// The React framework that gets it",
-        },
-        {
-          name: "JavaScript",
-          level: 95,
-          comment: "// My first programming love ❤️",
-        },
-        { name: "TypeScript", level: 80, comment: "// Because types matter" },
-        {
-          name: "HTML/CSS",
-          level: 95,
-          comment: "// The building blocks of the web",
-        },
-        {
-          name: "Tailwind CSS",
-          level: 90,
-          comment: "// Utility-first is the way",
-        },
+        { name: "React", icon: Code2 },
+        { name: "Next.js", icon: Globe },
+        { name: "JavaScript", icon: Code2 },
+        { name: "Tailwind CSS", icon: Palette },
+        { name: "HTML/CSS", icon: Code2 },
       ],
     },
     {
       title: "Backend Development",
+      icon: Server,
       color: "purple",
-      icon: "⚙️",
-      funFact: "// Where the magic happens behind the scenes",
+      description: "Scalable server-side solutions and APIs",
       skills: [
-        { name: "Node.js", level: 90, comment: "// JavaScript everywhere!" },
-        {
-          name: "Express.js",
-          level: 85,
-          comment: "// Fast, unopinionated, minimalist",
-        },
-        { name: "MongoDB", level: 85, comment: "// NoSQL for the win" },
+        { name: "Node.js", icon: Server },
+        { name: "Express.js", icon: Server },
+        { name: "MongoDB", icon: Database },
         {
           name: "PostgreSQL",
-          level: 75,
-          comment: "// When you need ACID compliance",
+
+          icon: Database,
         },
-        {
-          name: "RESTful APIs",
-          level: 90,
-          comment: "// REST in peace, bad APIs",
-        },
-        { name: "GraphQL", level: 70, comment: "// Query what you need" },
-      ],
-    },
-    {
-      title: "Tools & Technologies",
-      color: "blue",
-      icon: "🛠️",
-      funFact: "// A developer is only as good as their tools",
-      skills: [
-        {
-          name: "Git & GitHub",
-          level: 90,
-          comment: "// Version control is life",
-        },
-        {
-          name: "Docker",
-          level: 70,
-          comment: "// Containerize all the things!",
-        },
-        {
-          name: "AWS",
-          level: 65,
-          comment: "// The cloud is someone else's computer",
-        },
-        { name: "Firebase", level: 80, comment: "// Google's backend magic" },
-        { name: "Vercel", level: 85, comment: "// Deploy with a git push" },
-        { name: "Postman", level: 90, comment: "// API testing made easy" },
+        { name: "RESTful APIs", icon: Globe },
+        { name: "GraphQL", icon: Globe },
       ],
     },
   ];
-
   const getColorClasses = (color) => {
     const colors = {
       cyan: {
-        border: "border-cyan-400/50",
-        bg: "bg-cyan-500/20",
-        text: "text-cyan-400",
-        progress: "bg-cyan-400",
+        primary: "text-cyan-400",
+        secondary: "text-cyan-300",
+        bg: "bg-cyan-400/10",
+        border: "border-cyan-400/20",
+        hover: "hover:border-cyan-400/40",
+        gradient: "from-cyan-400/20 to-cyan-600/20",
       },
       purple: {
-        border: "border-purple-400/50",
-        bg: "bg-purple-500/20",
-        text: "text-purple-400",
-        progress: "bg-purple-400",
+        primary: "text-purple-400",
+        secondary: "text-purple-300",
+        bg: "bg-purple-400/10",
+        border: "border-purple-400/20",
+        hover: "hover:border-purple-400/40",
+        gradient: "from-purple-400/20 to-purple-600/20",
       },
       blue: {
-        border: "border-blue-400/50",
-        bg: "bg-blue-500/20",
-        text: "text-blue-400",
-        progress: "bg-blue-400",
+        primary: "text-blue-400",
+        secondary: "text-blue-300",
+        bg: "bg-blue-400/10",
+        border: "border-blue-400/20",
+        hover: "hover:border-blue-400/40",
+        gradient: "from-blue-400/20 to-blue-600/20",
       },
     };
     return colors[color];
+  };
+
+  const getLevelBadge = (level) => {
+    const levels = {
+      Expert: {
+        color: "bg-green-500/20 text-green-400 border-green-500/30",
+        dots: 3,
+      },
+      Advanced: {
+        color: "bg-blue-500/20 text-blue-400 border-blue-500/30",
+        dots: 2,
+      },
+      Intermediate: {
+        color: "bg-yellow-500/20 text-yellow-400 border-yellow-500/30",
+        dots: 1,
+      },
+    };
+    return levels[level] || levels["Intermediate"];
   };
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -197,6 +183,7 @@ export default function Skills() {
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
       >
+        {" "}
         <motion.div className="text-center mb-16" variants={cardVariants}>
           <motion.h3
             className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent mb-4"
@@ -206,13 +193,6 @@ export default function Skills() {
             }}
           >
             Skills & Expertise
-            <motion.span
-              className="inline-block ml-2"
-              animate={{ rotate: [0, 360] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-            >
-              ⚡
-            </motion.span>
           </motion.h3>
           <motion.div
             className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-purple-400 mx-auto rounded-full"
@@ -221,363 +201,121 @@ export default function Skills() {
             transition={{ duration: 1, delay: 0.5 }}
           />
           <motion.p
-            className="text-gray-400 font-mono text-sm mt-4"
-            animate={{ opacity: [0.5, 1, 0.5] }}
-            transition={{ duration: 3, repeat: Infinity }}
+            className="text-gray-400 mt-6 text-lg max-w-2xl mx-auto"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.8 }}
           >
-            // Leveling up one line of code at a time 🚀
+            Professional expertise across modern web development technologies
           </motion.p>
-        </motion.div>
+        </motion.div>{" "}        {/* Main Skills Categories */}
         <motion.div
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"
+          className="grid md:grid-cols-2 gap-12 mb-16"
           variants={containerVariants}
         >
-          {" "}
           {skillCategories.map((category, index) => {
             const colorClasses = getColorClasses(category.color);
+            const IconComponent = category.icon;
+
             return (
               <motion.div
                 key={index}
-                className={`bg-gray-900/50 backdrop-blur-sm rounded-2xl p-6 border ${colorClasses.border} hover:bg-gray-800/60 transition-all duration-500 group relative overflow-hidden`}
+                className={`bg-gray-900/50 backdrop-blur-sm rounded-xl p-8 border ${colorClasses.border} ${colorClasses.hover} transition-all duration-300`}
                 variants={cardVariants}
-                whileHover={{ scale: 1.02, y: -5 }}
-                onHoverStart={() => setHoveredSkill(`category-${index}`)}
-                onHoverEnd={() => setHoveredSkill(null)}
+                whileHover={{ y: -5 }}
               >
-                {/* Background Animation */}
-                <motion.div
-                  className="absolute inset-0 opacity-5 text-xs font-mono text-gray-400"
-                  initial={{ x: -100 }}
-                  animate={{ x: 100 }}
-                  transition={{
-                    duration: 15,
-                    repeat: Infinity,
-                    ease: "linear",
-                  }}
-                >
-                  {Array(8)
-                    .fill(
-                      `${category.title.toLowerCase().replace(/\s+/g, "")}(); `
-                    )
-                    .join("")}
-                </motion.div>
-
-                <motion.h4
-                  className={`text-xl font-bold ${colorClasses.text} mb-2 flex items-center gap-2 relative z-10`}
-                  animate={
-                    hoveredSkill === `category-${index}` ? { scale: 1.05 } : {}
-                  }
-                >
-                  <motion.span
-                    animate={{ rotate: [0, 10, -10, 0] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  >
-                    {category.icon}
-                  </motion.span>
-                  {category.title}
-                </motion.h4>
-                <motion.p
-                  className="text-gray-500 font-mono text-xs mb-6 relative z-10"
-                  animate={{ opacity: [0.6, 1, 0.6] }}
-                  transition={{ duration: 4, repeat: Infinity }}
-                >
-                  {category.funFact}
-                </motion.p>
-                <div className="space-y-4 relative z-10">
-                  {category.skills.map((skill, skillIndex) => (
-                    <motion.div
-                      key={skillIndex}
-                      className="space-y-2 group/skill"
-                      variants={skillVariants}
-                      whileHover={{ x: 5 }}
+                {/* Category Header */}
+                <div className="flex items-center gap-4 mb-6">
+                  <div className={`p-3 rounded-lg ${colorClasses.bg}`}>
+                    <IconComponent
+                      className={`w-6 h-6 ${colorClasses.primary}`}
+                    />
+                  </div>
+                  <div>
+                    <h4
+                      className={`text-xl font-semibold ${colorClasses.primary}`}
                     >
-                      <div className="flex justify-between items-center">
-                        <span className="text-gray-300 text-sm font-medium group-hover/skill:text-white transition-colors">
-                          {skill.name}
-                        </span>
-                        <motion.span
-                          className="text-gray-400 text-xs"
-                          animate={
-                            hoveredSkill === `skill-${index}-${skillIndex}`
-                              ? { scale: 1.2 }
-                              : {}
-                          }
-                        >
-                          {skill.level}%
-                        </motion.span>
-                      </div>
-                      <div className="w-full bg-gray-700 rounded-full h-2 overflow-hidden">
-                        <motion.div
-                          className={`${colorClasses.progress} h-2 rounded-full relative`}
-                          initial={{ width: 0 }}
-                          animate={isInView ? { width: `${skill.level}%` } : {}}
-                          transition={{
-                            duration: 1.5,
-                            delay: 0.5 + skillIndex * 0.1,
-                            ease: "easeOut",
-                          }}
-                          whileHover={{
-                            boxShadow: `0 0 20px ${
-                              colorClasses.progress.includes("cyan")
-                                ? "#22d3ee"
-                                : colorClasses.progress.includes("purple")
-                                ? "#a855f7"
-                                : "#3b82f6"
-                            }40`,
-                          }}
-                          onHoverStart={() =>
-                            setHoveredSkill(`skill-${index}-${skillIndex}`)
-                          }
-                          onHoverEnd={() => setHoveredSkill(null)}
-                        >
-                          <motion.div
-                            className="absolute inset-0 bg-white/20"
-                            animate={{ x: ["-100%", "100%"] }}
-                            transition={{
-                              duration: 2,
-                              repeat: Infinity,
-                              ease: "linear",
-                            }}
-                          />
-                        </motion.div>
-                      </div>
-                      {/* Hover Comment */}
+                      {category.title}
+                    </h4>
+                    <p className="text-gray-400 text-base">
+                      {category.description}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Skills Grid */}
+                <div className="space-y-4">
+                  {category.skills.map((skill, skillIndex) => {
+                    const SkillIcon = skill.icon;
+
+                    return (
                       <motion.div
-                        className="text-xs font-mono text-gray-500 opacity-0 group-hover/skill:opacity-100 transition-opacity duration-300"
-                        initial={{ y: 5 }}
-                        animate={
-                          hoveredSkill === `skill-${index}-${skillIndex}`
-                            ? { y: 0 }
-                            : {}
-                        }
+                        key={skillIndex}
+                        className="flex items-center gap-4 p-4 rounded-lg bg-gray-800/50 hover:bg-gray-800/80 transition-colors duration-200"
+                        variants={skillVariants}
+                        whileHover={{ x: 3 }}
                       >
-                        {skill.comment}
+                        <div className={`p-2 rounded-lg ${colorClasses.bg}`}>
+                          <SkillIcon className={`w-5 h-5 ${colorClasses.primary}`} />
+                        </div>
+                        <div className="flex-1">
+                          <span className="text-gray-200 font-medium text-base">
+                            {skill.name}
+                          </span>
+                        </div>
                       </motion.div>
-                    </motion.div>
-                  ))}
+                    );
+                  })}
                 </div>
               </motion.div>
             );
           })}
-        </motion.div>{" "}
-        {/* Enhanced Additional Skills Section */}
+        </motion.div>{" "}        {/* Additional Technologies */}
         <motion.div
-          className="bg-gray-900/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50 hover:border-cyan-400/50 transition-all duration-500 relative overflow-hidden"
+          className="bg-gray-900/50 backdrop-blur-sm rounded-xl p-10 border border-gray-700/50"
           variants={cardVariants}
-          whileHover={{ scale: 1.01, y: -2 }}
         >
-          {" "}
-          {/* Background Code Rain Effect */}
+          <div className="text-center mb-10">
+            <h4 className="text-3xl font-semibold text-white mb-3 flex items-center justify-center gap-3">
+              <Wrench className="w-7 h-7 text-cyan-400" />
+              Additional Technologies
+            </h4>
+            <p className="text-gray-400 text-lg">
+              Libraries, frameworks, and tools I work with regularly
+            </p>
+          </div>
+
           <motion.div
-            className="absolute inset-0 opacity-5 text-xs font-mono text-green-400"
-            animate={{ y: [-100, 800] }}
-            transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-          >
-            {Array(20)
-              .fill("01")
-              .map((bit, i) => (
-                <div
-                  key={i}
-                  style={{ left: `${i * 5}%`, position: "absolute" }}
-                >
-                  {Array(30).fill(bit).join(" ")}
-                </div>
-              ))}
-          </motion.div>
-          <motion.h4
-            className="text-2xl font-bold text-white mb-6 text-center flex items-center justify-center gap-2 relative z-10"
-            whileHover={{ scale: 1.05 }}
-          >
-            Additional Technologies
-            <motion.span
-              animate={{ rotate: [0, 360] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-            >
-              🔧
-            </motion.span>
-          </motion.h4>
-          <motion.p
-            className="text-center text-gray-400 font-mono text-sm mb-6 relative z-10"
-            animate={{ opacity: [0.6, 1, 0.6] }}
-            transition={{ duration: 3, repeat: Infinity }}
-          >
-            // The extended universe of my tech stack 🌌
-          </motion.p>
-          <motion.div
-            className="flex flex-wrap justify-center gap-4 relative z-10"
+            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6"
             variants={containerVariants}
           >
             {[
-              { name: "Socket.io", emoji: "🔌" },
-              { name: "Redux", emoji: "🏪" },
-              { name: "Zustand", emoji: "🐻" },
-              { name: "Prisma", emoji: "💎" },
-              { name: "Mongoose", emoji: "🦫" },
-              { name: "JWT", emoji: "🎫" },
-              { name: "Bcrypt", emoji: "🔒" },
-              { name: "Cloudinary", emoji: "☁️" },
-              { name: "Stripe", emoji: "💳" },
-              { name: "PayPal", emoji: "💰" },
-              { name: "Chart.js", emoji: "📊" },
-              { name: "Framer Motion", emoji: "🎬" },
-              { name: "Material-UI", emoji: "🎨" },
-              { name: "Chakra UI", emoji: "⚡" },
-              { name: "Jest", emoji: "🃏" },
-              { name: "Cypress", emoji: "🌲" },
-              { name: "ESLint", emoji: "🔍" },
-              { name: "Prettier", emoji: "💅" },
-              { name: "Webpack", emoji: "📦" },
-              { name: "Vite", emoji: "⚡" },
+              { name: "Socket.io", category: "Real-time" },
+              { name: "Redux", category: "State Management" },
+              { name: "Zustand", category: "State Management" },
+              { name: "Mongoose", category: "MongoDB ODM" },
+              { name: "JWT", category: "Authentication" },
+              { name: "Bcrypt", category: "Security" },
+              { name: "Cloudinary", category: "Media Management" },
+              { name: "Chart.js", category: "Data Visualization" },
+              { name: "Framer Motion", category: "Animation" },
+              { name: "Material-UI", category: "UI Framework" },
             ].map((tech, index) => (
-              <motion.span
+              <motion.div
                 key={index}
-                className="px-4 py-2 bg-gradient-to-r from-gray-700/50 to-gray-800/50 border border-gray-600/50 rounded-full text-gray-300 text-sm font-medium hover:scale-105 hover:border-cyan-400/50 hover:text-cyan-300 transition-all duration-200 cursor-pointer group flex items-center gap-2"
+                className="group p-4 bg-gray-800/50 rounded-lg border border-gray-700/50 hover:border-cyan-400/30 hover:bg-gray-800/80 transition-all duration-200 cursor-pointer"
                 variants={skillVariants}
-                whileHover={{
-                  scale: 1.1,
-                  boxShadow: "0 0 20px rgba(34, 211, 238, 0.3)",
-                  y: -2,
-                }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ y: -3, scale: 1.03 }}
+                whileTap={{ scale: 0.98 }}
               >
-                <span className="group-hover:animate-bounce">{tech.emoji}</span>
-                {tech.name}
-              </motion.span>
-            ))}
-          </motion.div>
-        </motion.div>{" "}
-        {/* Enhanced Learning Section */}
-        <motion.div className="mt-12 text-center" variants={cardVariants}>
-          <motion.div
-            className="bg-gradient-to-r from-cyan-500/10 to-purple-500/10 backdrop-blur-sm rounded-2xl p-8 border border-cyan-400/20 relative overflow-hidden"
-            whileHover={{ scale: 1.02, y: -5 }}
-          >
-            {/* Animated Background Pattern */}
-            <motion.div
-              className="absolute inset-0 opacity-10"
-              animate={{
-                backgroundPosition: ["0% 0%", "100% 100%"],
-              }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              style={{
-                backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%2322d3ee' fill-opacity='0.1'%3E%3Cpath d='M20 20c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10zm10 0c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10z'/%3E%3C/g%3E%3C/svg%3E")`,
-                backgroundSize: "40px 40px",
-              }}
-            />
-
-            <motion.h4
-              className="text-2xl font-bold text-cyan-400 mb-4 flex items-center justify-center gap-2 relative z-10"
-              whileHover={{ scale: 1.05 }}
-            >
-              Currently Learning
-              <motion.span
-                animate={{
-                  rotate: [0, 360],
-                  scale: [1, 1.2, 1],
-                }}
-                transition={{ duration: 3, repeat: Infinity }}
-              >
-                🧠
-              </motion.span>
-            </motion.h4>
-            <motion.p
-              className="text-gray-300 text-lg mb-6 relative z-10"
-              animate={{ opacity: [0.7, 1, 0.7] }}
-              transition={{ duration: 4, repeat: Infinity }}
-            >
-              I'm always expanding my skillset and staying current with the
-              latest technologies
-            </motion.p>
-            <motion.p
-              className="text-cyan-400/80 font-mono text-sm mb-6 relative z-10"
-              animate={{ opacity: [0.5, 1, 0.5] }}
-              transition={{ duration: 3, repeat: Infinity }}
-            >
-              // Never stop learning, never stop growing 📚
-            </motion.p>
-            <motion.div
-              className="flex flex-wrap justify-center gap-4 relative z-10"
-              variants={containerVariants}
-            >
-              {[
-                { name: "Machine Learning", icon: "🤖", status: "In Progress" },
-                { name: "Python", icon: "🐍", status: "Learning" },
-                { name: "Kubernetes", icon: "☸️", status: "Exploring" },
-                { name: "Microservices", icon: "🏗️", status: "Studying" },
-                { name: "Three.js", icon: "🎮", status: "Experimenting" },
-              ].map((tech, index) => (
-                <motion.div
-                  key={index}
-                  className="relative group"
-                  variants={skillVariants}
-                  whileHover={{ scale: 1.1, y: -5 }}
-                >
-                  <motion.span
-                    className="px-6 py-3 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-400/30 rounded-full text-cyan-300 font-medium transition-all duration-200 cursor-pointer flex items-center gap-2 relative z-10"
-                    animate={{
-                      boxShadow: [
-                        "0 0 0px rgba(34, 211, 238, 0.3)",
-                        "0 0 20px rgba(34, 211, 238, 0.5)",
-                        "0 0 0px rgba(34, 211, 238, 0.3)",
-                      ],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      delay: index * 0.5,
-                    }}
-                  >
-                    <motion.span
-                      animate={{ rotate: [0, 10, -10, 0] }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        delay: index * 0.3,
-                      }}
-                    >
-                      {tech.icon}
-                    </motion.span>
+                <div className="text-center">
+                  <div className="text-gray-200 font-medium text-base mb-2 group-hover:text-cyan-300 transition-colors">
                     {tech.name}
-                  </motion.span>
-
-                  {/* Tooltip */}
-                  <motion.div
-                    className="absolute -top-12 left-1/2 transform -translate-x-1/2 bg-gray-900 text-cyan-400 text-xs px-3 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none border border-cyan-400/30"
-                    initial={{ y: 10, opacity: 0 }}
-                    whileHover={{ y: 0, opacity: 1 }}
-                  >
-                    Status: {tech.status}
-                    <div className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-gray-900"></div>
-                  </motion.div>
-                </motion.div>
-              ))}
-            </motion.div>
-
-            {/* Learning Progress Indicator */}
-            <motion.div
-              className="mt-8 flex justify-center items-center gap-4 text-sm font-mono text-gray-400 relative z-10"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1 }}
-            >
-              <motion.div
-                className="flex items-center gap-2"
-                animate={{ opacity: [0.5, 1, 0.5] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-                Learning Mode: ON
+                  </div>
+                  <div className="text-gray-500 text-sm">{tech.category}</div>
+                </div>
               </motion.div>
-              <span>|</span>
-              <motion.div
-                className="flex items-center gap-2"
-                animate={{ opacity: [0.5, 1, 0.5] }}
-                transition={{ duration: 2, repeat: Infinity, delay: 1 }}
-              >
-                <span className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></span>
-                Brain: Overloaded with knowledge
-              </motion.div>
-            </motion.div>
+            ))}
           </motion.div>
         </motion.div>
       </motion.section>
